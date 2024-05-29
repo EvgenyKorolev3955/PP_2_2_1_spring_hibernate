@@ -10,11 +10,19 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@RequiredArgsConstructor
+
 @Repository
 public class UserDaoImp implements UserDao {
 
-    private final SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
+
+    public UserDaoImp() {
+    }
+
+    @Autowired
+    public UserDaoImp(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void add(User user) {
